@@ -94,7 +94,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
               } shadow-md rounded-md`}
             >
               {navItems.map(({ route, name }, key) => (
-                <Link href={route}>
+                <Link href={route} key={key}>
                   <a>
                     <Button>{name}</Button>
                   </a>
@@ -117,7 +117,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
         </h1>
         <div className="flex">
           {navItems.map(({ route, name }, key) => (
-            <Link href={route}>
+            <Link href={route} key={key}>
               <a>
                 <Button>{name}</Button>
               </a>
