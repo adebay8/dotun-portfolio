@@ -2,7 +2,6 @@ import { useRef } from "react";
 import Header from "../components/Header";
 import ServiceCard from "../components/ServiceCard";
 import Socials from "../components/Socials";
-import WorkCard from "../components/WorkCard";
 import { useIsomorphicLayoutEffect } from "../utils";
 import { stagger } from "../animations";
 import Footer from "../components/Footer";
@@ -24,14 +23,6 @@ export default function Home() {
   const textFour = useRef();
 
   // Handling Scroll
-  const handleWorkScroll = () => {
-    window.scrollTo({
-      top: workRef.current.offsetTop,
-      left: 0,
-      behavior: "smooth",
-    });
-  };
-
   const handleAboutScroll = () => {
     window.scrollTo({
       top: aboutRef.current.offsetTop,
@@ -49,7 +40,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden w-full">
       <Cursor />
       <Head>
         <title>{data.name}</title>
@@ -66,10 +57,7 @@ export default function Home() {
       <div className="gradient-circle-bottom"></div>
 
       <div className="container mx-auto mb-10">
-        <Header
-          handleWorkScroll={handleWorkScroll}
-          handleAboutScroll={handleAboutScroll}
-        />
+        <Header handleAboutScroll={handleAboutScroll} />
         <div className="laptop:mt-20 mt-10">
           <div className="mt-5">
             <h1
@@ -100,35 +88,15 @@ export default function Home() {
 
           <Socials className="mt-2 laptop:mt-5" />
         </div>
-        <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={workRef}>
-          <h1 className="text-2xl text-bold">Work.</h1>
-          <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
-            {data.projects.map((project) => (
-              <WorkCard
-                key={project.id}
-                img={project.imageSrc}
-                name={project.title}
-                description={project.description}
-                onClick={() => window.open(project.url)}
-              />
-            ))}
-          </div>
-        </div>
-        <div className="mt-10 laptop:mt-30 p-2 laptop:p-0">
-          <h1 className="tablet:m-10 text-2xl text-bold">Services.</h1>
-          <div className="mt-5 tablet:m-10 grid grid-cols-1 laptop:grid-cols-2 gap-6">
-            {data.services.map((service, index) => (
-              <ServiceCard
-                key={index}
-                name={service.title}
-                description={service.description}
-              />
-            ))}
-          </div>
-        </div>
-        <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={aboutRef}>
-          <h1 className="tablet:m-10 text-2xl text-bold">About.</h1>
-          <p className="tablet:m-10 mt-2 text-xl laptop:text-3xl w-full laptop:w-3/5">
+        <div
+          className="mt-10 laptop:mt-40 p-2 laptop:p-0"
+          ref={aboutRef}
+          id="about"
+        >
+          <h1 className="tablet:m-10 text-2xl text-bold font-bold">
+            About me.
+          </h1>
+          <p className="tablet:m-10 mt-2 text-xl laptop:text-2xl w-full laptop:w-3/5 font-light text-sm leading-7">
             {data.aboutpara}
           </p>
         </div>

@@ -9,7 +9,9 @@
 }
 
 html{
-  @apply cursor-none
+  @apply cursor-none;
+  scroll-behavior: smooth;
+
 }
 
 body {
